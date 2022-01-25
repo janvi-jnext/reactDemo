@@ -1,7 +1,7 @@
 import "./App.css";
-import Footer from "./mycomponent/footer";
-import Header from "./mycomponent/header";
-import Counter from "./mycomponent/counter";
+//import Footer from "./mycomponent/footer";
+//import Header from "./mycomponent/header";
+//import Counter from "./mycomponent/counter";
 import Mysec from "./mycomponent/mysec";
 
 function App() {

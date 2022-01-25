@@ -1,15 +1,17 @@
-import React from "react";
-import { Component } from "react/cjs/react.production.min";
+import React, { Component } from "react";
+import SingleuserData from "./tablecontainer";
+import TableData from "./table";
+import Form from "./Formcompont";
 
 class Click extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: [
-        { name: "tom", std: 10, age: 25 },
-        { name: "kia", std: 2, age: 21 },
-        { name: "jhon", std: 3, age: 24 },
-      ],
+      // userData: [
+      //   { name: "tom", std: 10, age: 25, Grade: "A" },
+      //   { name: "kia", std: 2, age: 21, Grade: "B" },
+      //   { name: "jhon", std: 3, age: 24, Grade: "A+" },
+      // ],
       singleUserData: {},
     };
     this.showData = this.showData.bind(this);
@@ -21,15 +23,17 @@ class Click extends React.Component {
 
   render() {
     const { userData, singleUserData } = this.state;
-    // console.log("userData", this.state.userData);
+    //console.log("userData", this.state.userData);
 
     console.log(userData);
     return (
       <div>
-        <Component2 singleUservalue={singleUserData} />
+        <SingleuserData singleUservalue={singleUserData} />
 
-        <p>{this.state.message} </p>
-        <table className="table">
+        <Form />
+        <TableData auserinfo={userData} handleClick={this.showData} />
+        {/* <p>{this.state.message} </p> */}
+        {/* <table className="table">
           <thead>
             <tr>
               <th>Name</th>
@@ -48,21 +52,9 @@ class Click extends React.Component {
               );
             })}
           </tbody>
-        </table>
+        </table> */}
       </div>
     );
   }
 }
 export default Click;
-class Component2 extends Component {
-  render() {
-    var { singleUservalue } = this.props;
-    return (
-      <div>
-        <div>{singleUservalue.name}</div>
-        <div>{singleUservalue.std}</div>
-        <div>{singleUservalue.age}</div>
-      </div>
-    );
-  }
-}
