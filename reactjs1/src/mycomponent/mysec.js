@@ -12,26 +12,78 @@ class Click extends React.Component {
       //   { name: "kia", std: 2, age: 21, Grade: "B" },
       //   { name: "jhon", std: 3, age: 24, Grade: "A+" },
       // ],
+      formData: {},
       singleUserData: {},
+      Name: "",
+      Std: "",
+      Age: "",
+      Grade: "",
+      items: [],
     };
-    this.showData = this.showData.bind(this);
+
+    // this.showData = this.showData.bind(this);
   }
 
-  showData = (item) => {
-    this.setState({ singleUserData: item });
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    const { formData } = this.state;
+    let items = [...this.state.items];
+
+    items.push(formData);
+    this.setState({
+      items,
+      formData: {},
+    });
   };
 
-  render() {
-    const { userData, singleUserData } = this.state;
-    //console.log("userData", this.state.userData);
+  handleInputChange = (e, name) => {
+    let value = e.target.value;
 
-    console.log(userData);
+    this.setState((state) => ({
+      formData: {
+        ...state.formData,
+        [name]: value,
+      },
+    }));
+  };
+
+  // handleInputChange = (e) => {
+  //   let input = e.target;
+  //   let name = e.target.name;
+  //   let value = input.value;
+
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // };
+  // showData = (item) => {
+  //   this.setState({ singleUserData: item });
+  // };
+
+  render() {
+    const { userData, singleUserData, formData, items } = this.state;
+    console.log("userData", items);
+
+    // console.log(userData);
+    console.log(singleUserData);
     return (
       <div>
         <SingleuserData singleUservalue={singleUserData} />
+        <Form
+          handleFormSubmit={this.handleFormSubmit}
+          handleInputChange={this.handleInputChange}
+          formData={formData}
 
-        <Form />
-        <TableData auserinfo={userData} handleClick={this.showData} />
+          // newUsername={this.state.name}
+          // newstd={this.state.std}
+          // newage={this.state.age}
+          // newGrade={this.state.Grade}
+        />
+        <TableData
+          auserinfo={userData}
+          handleClick={this.showData}
+          items={this.state.items}
+        />
         {/* <p>{this.state.message} </p> */}
         {/* <table className="table">
           <thead>

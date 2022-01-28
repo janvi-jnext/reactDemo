@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class TableData extends React.Component {
   render() {
-    const { auserinfo } = this.props;
+    //const { auserinfo } = this.props;
+    const auserinfo = this.props.items;
     // console.log("Data", auserinfo);
     //const { userData, singleUserData } = this.state;
     return (
@@ -14,6 +15,9 @@ class TableData extends React.Component {
               <th>Std</th>
               <th>Age</th>
               <th>Grade</th>
+              <th>city</th>
+              <th>Gender</th>
+              <th>Color</th>
             </tr>
           </thead>
           <tbody>

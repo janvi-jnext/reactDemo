@@ -1,7 +1,9 @@
 .Formname{
   margin:20px
 }
-
+body{
+  padding-left: 37%;
+}
 .Name{
   padding: 8px 10px ;
   margin-top: 10px;
