@@ -93,7 +93,6 @@ class Form extends React.Component {
     this.setState({ value: e.target.value });
     let fields = this.state.fields;
     fields[field] = e.target.value;
-
     this.setState({ fields });
     console.log("hello", fields);
   }
@@ -223,30 +222,33 @@ class Form extends React.Component {
               value="Female"
               name="gender"
               onChange={this.handleChange.bind(this, "gender")}
-            />{" "}
+            />
+            {""}
             Female
             <input
               type="radio"
               value="Other"
               name="gender"
               onChange={this.handleChange.bind(this, "gender")}
-            />{" "}
+            />
+            {""}
             Other<br></br>
             <span style={{ color: "red" }}>{this.state.errors["gender"]}</span>
           </div>
           <br></br>
           <label
             name="Color"
-            value={this.state.Color}
+            value="color"
             onChange={this.handleChange.bind(this, "Color")}
           >
             Choose Color *
           </label>
           <br></br>
-          <input type="checkbox" name="checkbox" /> Red
-          <input type="checkbox" name="checkbox" /> White
-          <input type="checkbox" name="checkbox" /> Black
+          <input type="checkbox" name="Red" /> Red
+          <input type="checkbox" name="White" /> White
+          <input type="checkbox" name="Black" /> Black
           <br></br>
+          <span style={{ color: "red" }}>{this.state.errors["Color"]}</span>
           <button type="Submit" className="sub-btn" value="submit">
             submit
           </button>

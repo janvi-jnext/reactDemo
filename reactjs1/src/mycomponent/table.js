@@ -27,7 +27,9 @@ class TableData extends React.Component {
                   <td>{item?.name}</td>
                   <td>{item?.std}</td>
                   <td>{item?.age}</td>
-                  <td>{item?.Grade}</td>
+                  <td>{item?.city}</td>
+                  <td>{item?.Gender}</td>
+                  <td>{item?.Color}</td>
                 </tr>
               );
             })}

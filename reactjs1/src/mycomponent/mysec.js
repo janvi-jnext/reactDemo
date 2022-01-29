@@ -63,6 +63,7 @@ class Click extends React.Component {
   render() {
     const { userData, singleUserData, formData, items } = this.state;
     console.log("userData", items);
+    console.log("janvi");
 
     // console.log(userData);
     console.log(singleUserData);
@@ -73,7 +74,6 @@ class Click extends React.Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           formData={formData}
-
           // newUsername={this.state.name}
           // newstd={this.state.std}
           // newage={this.state.age}
