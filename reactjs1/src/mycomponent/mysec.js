@@ -14,11 +14,14 @@ class Click extends React.Component {
       // ],
       formData: {},
       singleUserData: {},
+      id: "",
       Name: "",
       Std: "",
       Age: "",
       Grade: "",
       items: [],
+      id: 0,
+      update: true,
     };
 
     // this.showData = this.showData.bind(this);
@@ -26,25 +29,36 @@ class Click extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { formData } = this.state;
+    const { singleUserData } = this.state;
     let items = [...this.state.items];
 
-    items.push(formData);
+    items.push(singleUserData);
+
     this.setState({
       items,
-      formData: {},
+      singleUserData: {},
+      update: false,
     });
+    e.target.reset();
   };
 
   handleInputChange = (e, name) => {
     let value = e.target.value;
 
     this.setState((state) => ({
-      formData: {
-        ...state.formData,
+      singleUserData: {
+        ...state.singleUserData,
         [name]: value,
       },
     }));
+  };
+
+  removedata = (index, item) => {
+    var { items } = this.state;
+    // console.log("sd", items, index, item);
+    items.splice(index, 1);
+
+    this.setState({ items: items });
   };
 
   // handleInputChange = (e) => {
@@ -56,24 +70,37 @@ class Click extends React.Component {
   //     [name]: value,
   //   });
   // };
-  // showData = (item) => {
-  //   this.setState({ singleUserData: item });
-  // };
+  showclickdata = (item, input, items) => {
+    this.setState({ singleUserData: item });
+
+    this.setState({
+      update: true,
+      id: item.id,
+    });
+    let updateList = items.map((updatedUser) => {
+      if (updatedUser.id === input.id) {
+        updatedUser.productname = input.productname;
+        updatedUser.category = input.category;
+      }
+      return updatedUser;
+    });
+  };
 
   render() {
-    const { userData, singleUserData, formData, items } = this.state;
-    console.log("userData", items);
-    console.log("janvi");
+    const { userData, singleUserData, formData, items, index } = this.state;
+    //console.log("UserData", userData, index, items);
+    //  console.log("userData", items);
 
     // console.log(userData);
-    console.log(singleUserData);
+    //console.log(singleUserData);
     return (
       <div>
-        <SingleuserData singleUservalue={singleUserData} />
+        {/* <SingleuserData singleUservalue={singleUserData} /> */}
         <Form
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
-          formData={formData}
+          formData={this.state.singleUserData}
+          updateData={this.state.update}
           // newUsername={this.state.name}
           // newstd={this.state.std}
           // newage={this.state.age}
@@ -83,7 +110,10 @@ class Click extends React.Component {
           auserinfo={userData}
           handleClick={this.showData}
           items={this.state.items}
+          removeItem={this.removedata}
+          editItem={this.showclickdata}
         />
+        {/* <displaylist handleDelete={this.handleDelete} /> */}
         {/* <p>{this.state.message} </p> */}
         {/* <table className="table">
           <thead>

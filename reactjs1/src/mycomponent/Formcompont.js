@@ -10,87 +10,87 @@ class Form extends React.Component {
     };
   }
 
-  handleValidation() {
-    let fields = this.state.fields;
-    let errors = {};
-    let formIsValid = true;
+  // handleValidation() {
+  //   let fields = this.state.fields;
+  //   let errors = {};
+  //   let formIsValid = true;
 
-    //Name
-    if (!fields["name"]) {
-      formIsValid = false;
-      errors["name"] = "*Please Enter your Name";
-    }
+  //   //Name
+  //   if (!fields["name"]) {
+  //     formIsValid = false;
+  //     errors["name"] = "*Please Enter your Name";
+  //   }
 
-    if (typeof fields["name"] !== "undefined") {
-      if (!fields["name"].match(/^[a-zA-Z]+$/)) {
-        formIsValid = false;
-        errors["name"] = "*Only Letters";
-      }
-    }
-    //std
-    if (!fields["std"]) {
-      formIsValid = false;
-      errors["std"] = "*Please Enter your std";
-    }
+  //   if (typeof fields["name"] !== "undefined") {
+  //     if (!fields["name"].match(/^[a-zA-Z]+$/)) {
+  //       formIsValid = false;
+  //       errors["name"] = "*Only Letters";
+  //     }
+  //   }
+  //   //std
+  //   if (!fields["std"]) {
+  //     formIsValid = false;
+  //     errors["std"] = "*Please Enter your std";
+  //   }
 
-    if (typeof fields["std"] !== "undefined") {
-      if (!fields["std"].match(/^[0-9\b]+$/)) {
-        formIsValid = false;
-        errors["std"] = "*Only numbers";
-      }
-    }
+  //   if (typeof fields["std"] !== "undefined") {
+  //     if (!fields["std"].match(/^[0-9\b]+$/)) {
+  //       formIsValid = false;
+  //       errors["std"] = "*Only numbers";
+  //     }
+  //   }
 
-    //age
-    if (!fields["age"]) {
-      formIsValid = false;
-      errors["age"] = "*Please Enter your Age";
-    }
+  //   //age
+  //   if (!fields["age"]) {
+  //     formIsValid = false;
+  //     errors["age"] = "*Please Enter your Age";
+  //   }
 
-    if (typeof fields["age"] !== "undefined") {
-      if (!fields["age"].match(/^[0-9\b]+$/)) {
-        formIsValid = false;
-        errors["age"] = "*Only numbers";
-      }
-    }
+  //   if (typeof fields["age"] !== "undefined") {
+  //     if (!fields["age"].match(/^[0-9\b]+$/)) {
+  //       formIsValid = false;
+  //       errors["age"] = "*Only numbers";
+  //     }
+  //   }
 
-    //grade
-    if (!fields["Grade"]) {
-      formIsValid = false;
-      errors["Grade"] = "*Please Enter your Grade";
-    }
+  //   //grade
+  //   if (!fields["Grade"]) {
+  //     formIsValid = false;
+  //     errors["Grade"] = "*Please Enter your Grade";
+  //   }
 
-    if (typeof fields["Grade"] !== "undefined") {
-      if (!fields["Grade"].match(/^[a-zA-Z]+$/)) {
-        formIsValid = false;
-        errors["Grade"] = "*only A to E letter";
-      }
-    }
-    //gender
-    if (!fields["gender"]) {
-      formIsValid = false;
-      errors["gender"] = "*Please Choose Any One gender";
-    }
-    //city
-    if (!fields["city"]) {
-      formIsValid = false;
-      errors["city"] = "*Please Select Any One city";
-    }
-    this.setState({ errors: errors });
-    return formIsValid;
-  }
+  //   if (typeof fields["Grade"] !== "undefined") {
+  //     if (!fields["Grade"].match(/^[a-zA-Z]+$/)) {
+  //       formIsValid = false;
+  //       errors["Grade"] = "*only A to E letter";
+  //     }
+  //   }
+  //   //   //gender
+  //   //   if (!fields["gender"]) {
+  //   //     formIsValid = false;
+  //   //     errors["gender"] = "*Please Choose Any One gender";
+  //   //   }
+  //   //   //city
+  //   //   if (!fields["city"]) {
+  //   //     formIsValid = false;
+  //   //     errors["city"] = "*Please Select Any One city";
+  //   //   }
+  //   this.setState({ errors: errors });
+  //   return formIsValid;
+  // }
 
-  contactSubmit(e) {
-    e.preventDefault();
+  // contactSubmit(e) {
+  //   e.preventDefault();
 
-    if (this.handleValidation()) {
-      alert("Form submitted");
-    } else {
-      alert("Form has errors.");
-    }
-  }
+  //   if (this.handleValidation()) {
+  //     alert("Form submitted");
+  //   } else {
+  //     alert("Form has errors.");
+  //   }
+  // }
 
   handleChange(field, e) {
-    this.setState({ value: e.target.value });
+    //this.setState({ value: e.target.value });
     let fields = this.state.fields;
     fields[field] = e.target.value;
     this.setState({ fields });
@@ -99,14 +99,24 @@ class Form extends React.Component {
 
   render() {
     const { formData } = this.props;
+    const { updateData } = this.props;
     return (
       <div>
         <form
           className="Formname"
           onSubmit={
-            (this.props.handleFormSubmit, this.contactSubmit.bind(this))
+            this.props.handleFormSubmit
+            //, this.contactSubmit.bind(this)
           }
         >
+          {/* <Button
+            variant="contained"
+            onClick={() => (type === "add" ? saveInput() : saveChangeHandler())}
+            // onClick={saveChangeHandler}
+            className="dialog-submit"
+          >
+            {this.state.update ? "update" : "submit"}
+          </Button> */}
           <div className="form-sec">
             <label htmlFor="name">Name*</label>
             <br></br>
@@ -116,14 +126,14 @@ class Form extends React.Component {
               id="name"
               value={formData.name}
               onChange={
-                ((e) => this.props.handleInputChange(e, "name"),
-                this.handleChange.bind(this, "name"))
+                (e) => this.props.handleInputChange(e, "name")
+                //this.handleChange.bind(this, "name")
               }
               name="name"
               className="Name"
             />
             <br></br>
-            <span style={{ color: "red" }}>{this.state.errors["name"]}</span>
+            {/* <span style={{ color: "red" }}>{this.state.errors["name"]}</span> */}
           </div>
           <br></br>
           <div class="form-sec">
@@ -134,15 +144,15 @@ class Form extends React.Component {
               name="std"
               value={formData.std}
               onChange={
-                ((e) => this.props.handleInputChange(e, "std"),
-                this.handleChange.bind(this, "std"))
+                (e) => this.props.handleInputChange(e, "std")
+                // this.handleChange.bind(this, "std")
               }
               placeholder="Enter your Std"
               id="std"
               className="Name"
             />
             <br></br>
-            <span style={{ color: "red" }}>{this.state.errors["std"]}</span>
+            {/* <span style={{ color: "red" }}>{this.state.errors["std"]}</span> */}
           </div>
           <br></br>
           <div class="form-sec">
@@ -153,36 +163,37 @@ class Form extends React.Component {
               placeholder="Enter your Age"
               value={formData.age}
               onChange={
-                ((e) => this.props.handleInputChange(e, "age"),
-                this.handleChange.bind(this, "age"))
+                (e) => this.props.handleInputChange(e, "age")
+                // ,this.handleChange.bind(this, "age")
               }
               id="Age"
               name="Age"
               className="Name"
             />
             <br></br>
-            <span style={{ color: "red" }}>{this.state.errors["age"]}</span>
+            {/* <span style={{ color: "red" }}>{this.state.errors["age"]}</span> */}
           </div>
           <br></br>
           <div class="form-sec">
-            <label htmlFor="grade">Grade *</label>
+            <label htmlFor="Grade">Grade *</label>
             <br></br>
             <input
               type="text"
               placeholder="Enter your Grade"
               value={formData.Grade}
               onChange={
-                ((e) => this.props.handleInputChange(e, "Grade"),
-                this.handleChange.bind(this, "Grade"))
+                (e) => this.props.handleInputChange(e, "Grade")
+                //this.handleChange.bind(this, "Grade")
               }
               name="Grade"
-              id="grade"
+              id="Grade"
               className="Name"
             />
             <br></br>
-            <span style={{ color: "red" }}>{this.state.errors["Grade"]}</span>
+            {/* <span style={{ color: "red" }}>{this.state.errors["Grade"]}</span> */}
           </div>
-          <br></br>
+
+          {/* <br></br>
           <div>
             <label htmlFor="city">Select your City *</label>
             <br></br>
@@ -248,13 +259,14 @@ class Form extends React.Component {
           <input type="checkbox" name="White" /> White
           <input type="checkbox" name="Black" /> Black
           <br></br>
-          <span style={{ color: "red" }}>{this.state.errors["Color"]}</span>
-          <button type="Submit" className="sub-btn" value="submit">
-            submit
+          <span style={{ color: "red" }}>{this.state.errors["Color"]}</span> */}
+          <button type="Submit" className="sub-btn">
+            {updateData ? "update" : "submit"}
           </button>
         </form>
       </div>
     );
   }
 }
+
 export default Form;
